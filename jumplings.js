@@ -48,11 +48,11 @@ router.put("/:id", (req, res) => {
 router.delete("/:id", (req, res) => {
   const jumplings = res.locals.jumplingData;
   const targetJumplingId = req.params.id;
-  const retrieveJumpling = jumplings.filter(jumpling => {
+  const retrieveTargetJumpling = jumplings.filter(jumpling => {
     return String(jumpling.id) === targetJumplingId;
   });
   const findMatch = retrieveJumpling => {
-    if (retrieveJumpling) {
+    if (!retrieveJumpling === null) {
       return retrieveJumpling.id;
     }
   };
