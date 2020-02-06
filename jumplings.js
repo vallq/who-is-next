@@ -10,7 +10,6 @@ router.get("/", (req, res) => {
 //2: add one jumpling
 router.post("/", (req, res) => {
   const jumplings = res.locals.jumplingData;
-  console.log(res.locals.jumplingData);
   const nextPerson = req.body;
   jumplings.push(nextPerson);
   res.status(201).send(nextPerson);
