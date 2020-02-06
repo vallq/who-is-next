@@ -32,12 +32,37 @@ describe("app.js", () => {
     const targetJumpling = [{ id: 3, name: "Mario" }];
     expect(response.body).toStrictEqual(targetJumpling);
   });
+});
 
-  it("PUT / should add Jumpling to array and return Jumpling added", async () => {
+describe("jumplings.js", () => {
+  // it("POST / should add Jumpling to array and return Jumpling added", async () => {
+  //   const response = await request(app)
+  //     .put("/jumplings/")
+  //     .expect(201);
+  //   const newJumpling = { id: 2, name: "Princess" };
+  //   expect(response.body).toStrictEqual(newJumpling);
+  // });
+
+  it("GET / should return Jumpling with id", async () => {
     const response = await request(app)
-      .put("/jumplings/2")
+      .get("/jumplings/3")
       .expect(200);
-    const newJumpling = [{ id: 2, name: "Princess" }];
-    expect(response.body).toStrictEqual(newJumpling);
+    const retrieveJumpling = [{ id: 3, name: "Mario" }];
+    expect(response.body).toStrictEqual(retrieveJumpling);
+  });
+
+  // it("PUT / should return updated Jumpling with id", async () => {
+  //   const response = await request(app)
+  //     .get("/jumplings/3")
+  //     .expect(200);
+  //   const retrieveJumpling = [{ id: 3, name: "Mario" }];
+  //   expect(response.body).toStrictEqual(retrieveJumpling);
+  // });
+  it("DELETE / should return deleted Jumpling", async () => {
+    const response = await request(app)
+      .delete("/jumplings/3")
+      .expect(200);
+    const retrieveJumpling = [{ id: 3, name: "Mario" }];
+    expect(response.body).toStrictEqual(retrieveJumpling);
   });
 });
