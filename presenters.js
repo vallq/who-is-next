@@ -5,14 +5,17 @@ const router = express.Router();
 router.post("/", (req, res, next) => {
   const jumplings = res.locals.jumplingData;
   const history = res.locals.jumplingHistory;
-  let min = 0;
-  let max = jumplings.length;
-  const targetIndex = (min, max) => {
-    return Math.floor(Math.random() * jumplings.length);
-  };
-  const nextPerson = jumplings[targetIndex];
-  history.push(nextPerson);
-  res.status(201).send(nextPerson);
+  if (jumplings.length > 0) {
+    const targetIndex = Math.floor(Math.random() * jumplings.length);
+    const nextPerson = jumplings[targetIndex];
+    console.log(nextPerson);
+    history.push(nextPerson);
+    res.status(201).send(nextPerson);
+  } else {
+    const err = new Error("Bad Request: No Jumplings");
+    err.code = 400;
+    next(err);
+  }
 });
 
 //7: get history of presenters
